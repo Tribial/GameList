@@ -1,0 +1,9 @@
+c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\bin\Debug\G.exe.config
+c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\bin\Debug\G.exe
+c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\bin\Debug\G.pdb
+c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\obj\Debug\G.csprojResolveAssemblyReference.cache
+c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\obj\Debug\G.Form1.resources
+c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\obj\Debug\G.Properties.Resources.resources
+c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\obj\Debug\G.csproj.GenerateResource.Cache
+c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\obj\Debug\G.exe
+c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\obj\Debug\G.pdb
