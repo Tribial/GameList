@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace G
 {
@@ -14,7 +15,65 @@ namespace G
     {
         private List<Label> labels = new List<Label>();
         private List<PictureBox> icons = new List<PictureBox>();
+        private List<String> gamePaths = new List<string>();
+        private List<String> gameNames = new List<string>();
+
         public Form1()
+        {
+            
+            InitializeComponent();
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void OnAnyGameClick(object sender, EventArgs e)
+        {
+            int id = -1;
+            if (sender is Label)
+            {
+                Label sen = (Label)sender;
+                try { id = Convert.ToInt32(Convert.ToString(sen.Name[sen.Name.Length-1])); }
+                catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji.");}
+                if (id == 0)
+                    id = 10;
+                label11.Text = gameNames[id];
+                label12.Text = gamePaths[id];
+            }
+            
+            Log.Enabled = true;
+            Check_and_Load();
+        }
+
+        private void Form1_Click(object sender, EventArgs e)
+        {
+            label11.Text = "";
+            label12.Text = "";
+            Log.Enabled = false;
+        }
+
+        private void Check_and_Load()
+        {
+            for (int i = 0; i < labels.Count; i++ )
+            {
+                labels[i].Enabled = false;
+                labels[i].BackColor = Color.Gray;
+                icons[i].Enabled = false;
+                icons[i].BackColor = Color.Gray;
+
+
+            }
+            for (int i = 0; i < gamePaths.Count; i++)
+            {
+                labels[i].Enabled = true;
+                labels[i].Text = gameNames[i];
+                //icons[i].Image = ??
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
             labels.Add(label1);
             labels.Add(label2);
@@ -36,35 +95,7 @@ namespace G
             icons.Add(pictureBox8);
             icons.Add(pictureBox9);
             icons.Add(pictureBox10);
-            InitializeComponent();
-        }
-
-        private void Exit_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            pictureBox1.BackColor = Color.Red;
-            
-        }
-        private void OnAnyGameClick(object sender, EventArgs e)
-        {
-            int id = 1;
-            if (sender is Label)
-            {
-                Label sen = (Label)sender;
-                label11.Text = sen.Name;
-            }
-            else if (sender is PictureBox)
-            {
-                PictureBox sen = (PictureBox)sender;
-                label11.Text = icons.IndexOf(sen).ToString();
-
-            }
-            //label11.Text = id.ToString();
-            Log.Enabled = true;
+            Check_and_Load();
         }
     }
 }

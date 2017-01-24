@@ -52,6 +52,7 @@
             this.Add = new System.Windows.Forms.Button();
             this.Log = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -86,7 +87,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(67, 67);
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.OnAnyGameClick);
             // 
             // pictureBox2
             // 
@@ -95,7 +95,6 @@
             this.pictureBox2.Size = new System.Drawing.Size(67, 67);
             this.pictureBox2.TabIndex = 12;
             this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.OnAnyGameClick);
             // 
             // pictureBox3
             // 
@@ -104,7 +103,6 @@
             this.pictureBox3.Size = new System.Drawing.Size(67, 67);
             this.pictureBox3.TabIndex = 13;
             this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.OnAnyGameClick);
             // 
             // pictureBox4
             // 
@@ -113,7 +111,6 @@
             this.pictureBox4.Size = new System.Drawing.Size(67, 67);
             this.pictureBox4.TabIndex = 14;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.OnAnyGameClick);
             // 
             // pictureBox5
             // 
@@ -122,7 +119,6 @@
             this.pictureBox5.Size = new System.Drawing.Size(67, 67);
             this.pictureBox5.TabIndex = 15;
             this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.OnAnyGameClick);
             // 
             // pictureBox6
             // 
@@ -131,7 +127,6 @@
             this.pictureBox6.Size = new System.Drawing.Size(67, 67);
             this.pictureBox6.TabIndex = 16;
             this.pictureBox6.TabStop = false;
-            this.pictureBox6.Click += new System.EventHandler(this.OnAnyGameClick);
             // 
             // pictureBox7
             // 
@@ -140,7 +135,6 @@
             this.pictureBox7.Size = new System.Drawing.Size(67, 67);
             this.pictureBox7.TabIndex = 17;
             this.pictureBox7.TabStop = false;
-            this.pictureBox7.Click += new System.EventHandler(this.OnAnyGameClick);
             // 
             // pictureBox8
             // 
@@ -149,7 +143,6 @@
             this.pictureBox8.Size = new System.Drawing.Size(67, 67);
             this.pictureBox8.TabIndex = 18;
             this.pictureBox8.TabStop = false;
-            this.pictureBox8.Click += new System.EventHandler(this.OnAnyGameClick);
             // 
             // pictureBox9
             // 
@@ -158,7 +151,6 @@
             this.pictureBox9.Size = new System.Drawing.Size(67, 67);
             this.pictureBox9.TabIndex = 19;
             this.pictureBox9.TabStop = false;
-            this.pictureBox9.Click += new System.EventHandler(this.OnAnyGameClick);
             // 
             // pictureBox10
             // 
@@ -167,7 +159,6 @@
             this.pictureBox10.Size = new System.Drawing.Size(67, 67);
             this.pictureBox10.TabIndex = 20;
             this.pictureBox10.TabStop = false;
-            this.pictureBox10.Click += new System.EventHandler(this.OnAnyGameClick);
             // 
             // label1
             // 
@@ -250,7 +241,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Lucida Console", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label8.Location = new System.Drawing.Point(85, 520);
+            this.label8.Location = new System.Drawing.Point(85, 523);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(223, 65);
             this.label8.TabIndex = 28;
@@ -309,11 +300,18 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(937, 85);
+            this.label11.Location = new System.Drawing.Point(783, 15);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(63, 13);
+            this.label11.Size = new System.Drawing.Size(0, 13);
             this.label11.TabIndex = 33;
-            this.label11.Text = "label11";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(783, 94);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(0, 13);
+            this.label12.TabIndex = 34;
             // 
             // Form1
             // 
@@ -321,6 +319,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.Log);
             this.Controls.Add(this.Add);
@@ -352,6 +351,8 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Games";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Click += new System.EventHandler(this.Form1_Click);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -380,19 +381,20 @@
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox10;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.Button Log;
         private System.Windows.Forms.Label label11;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Label label5;
+        public System.Windows.Forms.Label label6;
+        public System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label label8;
+        public System.Windows.Forms.Label label9;
+        public System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label12;
     }
 }
 
