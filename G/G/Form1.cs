@@ -39,8 +39,8 @@ namespace G
                 catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji.");}
                 if (id == 0)
                     id = 10;
-                label11.Text = gameNames[id];
-                label12.Text = gamePaths[id];
+                label11.Text = gameNames[id-1];
+                label12.Text = gamePaths[id-1];
             }
             
             Log.Enabled = true;
@@ -59,22 +59,38 @@ namespace G
             for (int i = 0; i < labels.Count; i++ )
             {
                 labels[i].Enabled = false;
-                labels[i].BackColor = Color.Gray;
+                labels[i].BackColor = Color.FromArgb(30,30,30);
                 icons[i].Enabled = false;
-                icons[i].BackColor = Color.Gray;
-
-
+                icons[i].BackColor = Color.FromArgb(30, 30, 30);
             }
+
             for (int i = 0; i < gamePaths.Count; i++)
             {
                 labels[i].Enabled = true;
+                labels[i].BackColor = Color.Black;
                 labels[i].Text = gameNames[i];
+                
                 //icons[i].Image = ??
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            try
+            {
+                using (StreamReader sr = new StreamReader("games"))
+                {
+                    string[] path_name;
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        path_name = line.Split('#');
+                        gamePaths.Add(path_name[0]);
+                        gameNames.Add(path_name[1]);
+                    }
+                }
+            }
+            catch (Exception){}
             labels.Add(label1);
             labels.Add(label2);
             labels.Add(label3);
@@ -96,6 +112,62 @@ namespace G
             icons.Add(pictureBox9);
             icons.Add(pictureBox10);
             Check_and_Load();
+        }
+
+        private void label_MouseHover(object sender, EventArgs e)
+        {
+            int id = -1;
+            Label sen = (Label)sender;
+            try { id = Convert.ToInt32(Convert.ToString(sen.Name[sen.Name.Length - 1])); }
+            catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji."); }
+            if (id == 0)
+                id = 10;
+            labels[id-1].BackColor = Color.Gray;
+            
+        }
+
+        private void label_MouseLeave(object sender, EventArgs e)
+        {
+            int id = -1;
+            Label sen = (Label)sender;
+            try { id = Convert.ToInt32(Convert.ToString(sen.Name[sen.Name.Length - 1])); }
+            catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji."); }
+            if (id == 0)
+                id = 10;
+            labels[id - 1].BackColor = Color.Transparent;
+            labels[id - 1].ForeColor = Color.White;
+        }
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog lol = new OpenFileDialog();
+            bool clone=false;
+            lol.ShowDialog();
+            foreach (var a in gamePaths)
+            {
+                if (a == lol.FileName)
+                    clone = true;
+            }
+            if (!clone)
+            {
+                gamePaths.Add(lol.FileName);
+                gameNames.Add(lol.SafeFileName);
+
+                using (StreamWriter sw = new StreamWriter("games", true))
+                {
+                    sw.WriteLine(lol.FileName + "#" + lol.SafeFileName);
+                }
+            }
+            else
+            {
+                MessageBox.Show("File:\n   " + lol.FileName + "\n   " + lol.SafeFileName +"\nIs already on your game list.");
+            }
+            Check_and_Load();
+        }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

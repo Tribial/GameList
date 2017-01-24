@@ -53,6 +53,7 @@
             this.Log = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.Delete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -170,6 +171,8 @@
             this.label1.TabIndex = 21;
             this.label1.Text = "Empty";
             this.label1.Click += new System.EventHandler(this.OnAnyGameClick);
+            this.label1.MouseLeave += new System.EventHandler(this.label_MouseLeave);
+            this.label1.MouseHover += new System.EventHandler(this.label_MouseHover);
             // 
             // label2
             // 
@@ -181,6 +184,8 @@
             this.label2.TabIndex = 22;
             this.label2.Text = "Empty";
             this.label2.Click += new System.EventHandler(this.OnAnyGameClick);
+            this.label2.MouseLeave += new System.EventHandler(this.label_MouseLeave);
+            this.label2.MouseHover += new System.EventHandler(this.label_MouseHover);
             // 
             // label3
             // 
@@ -192,6 +197,8 @@
             this.label3.TabIndex = 23;
             this.label3.Text = "Empty";
             this.label3.Click += new System.EventHandler(this.OnAnyGameClick);
+            this.label3.MouseLeave += new System.EventHandler(this.label_MouseLeave);
+            this.label3.MouseHover += new System.EventHandler(this.label_MouseHover);
             // 
             // label4
             // 
@@ -203,6 +210,8 @@
             this.label4.TabIndex = 24;
             this.label4.Text = "Empty";
             this.label4.Click += new System.EventHandler(this.OnAnyGameClick);
+            this.label4.MouseLeave += new System.EventHandler(this.label_MouseLeave);
+            this.label4.MouseHover += new System.EventHandler(this.label_MouseHover);
             // 
             // label5
             // 
@@ -214,6 +223,8 @@
             this.label5.TabIndex = 25;
             this.label5.Text = "Empty";
             this.label5.Click += new System.EventHandler(this.OnAnyGameClick);
+            this.label5.MouseLeave += new System.EventHandler(this.label_MouseLeave);
+            this.label5.MouseHover += new System.EventHandler(this.label_MouseHover);
             // 
             // label6
             // 
@@ -225,6 +236,8 @@
             this.label6.TabIndex = 26;
             this.label6.Text = "Empty";
             this.label6.Click += new System.EventHandler(this.OnAnyGameClick);
+            this.label6.MouseLeave += new System.EventHandler(this.label_MouseLeave);
+            this.label6.MouseHover += new System.EventHandler(this.label_MouseHover);
             // 
             // label7
             // 
@@ -236,6 +249,8 @@
             this.label7.TabIndex = 27;
             this.label7.Text = "Empty";
             this.label7.Click += new System.EventHandler(this.OnAnyGameClick);
+            this.label7.MouseLeave += new System.EventHandler(this.label_MouseLeave);
+            this.label7.MouseHover += new System.EventHandler(this.label_MouseHover);
             // 
             // label8
             // 
@@ -247,6 +262,8 @@
             this.label8.TabIndex = 28;
             this.label8.Text = "Empty";
             this.label8.Click += new System.EventHandler(this.OnAnyGameClick);
+            this.label8.MouseLeave += new System.EventHandler(this.label_MouseLeave);
+            this.label8.MouseHover += new System.EventHandler(this.label_MouseHover);
             // 
             // label9
             // 
@@ -258,6 +275,8 @@
             this.label9.TabIndex = 29;
             this.label9.Text = "Empty";
             this.label9.Click += new System.EventHandler(this.OnAnyGameClick);
+            this.label9.MouseLeave += new System.EventHandler(this.label_MouseLeave);
+            this.label9.MouseHover += new System.EventHandler(this.label_MouseHover);
             // 
             // label10
             // 
@@ -269,6 +288,8 @@
             this.label10.TabIndex = 30;
             this.label10.Text = "Empty";
             this.label10.Click += new System.EventHandler(this.OnAnyGameClick);
+            this.label10.MouseLeave += new System.EventHandler(this.label_MouseLeave);
+            this.label10.MouseHover += new System.EventHandler(this.label_MouseHover);
             // 
             // Add
             // 
@@ -282,6 +303,7 @@
             this.Add.TabIndex = 31;
             this.Add.Text = "Add Game";
             this.Add.UseVisualStyleBackColor = false;
+            this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
             // Log
             // 
@@ -300,7 +322,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(783, 15);
+            this.label11.Location = new System.Drawing.Point(959, 485);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(0, 13);
             this.label11.TabIndex = 33;
@@ -308,10 +330,25 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(783, 94);
+            this.label12.Location = new System.Drawing.Point(959, 564);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(0, 13);
             this.label12.TabIndex = 34;
+            // 
+            // Delete
+            // 
+            this.Delete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Delete.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.Delete.Enabled = false;
+            this.Delete.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Delete.Font = new System.Drawing.Font("Lucida Console", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Delete.Location = new System.Drawing.Point(1071, 173);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(283, 73);
+            this.Delete.TabIndex = 35;
+            this.Delete.Text = "Delete Game";
+            this.Delete.UseVisualStyleBackColor = false;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // Form1
             // 
@@ -319,6 +356,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.Delete);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.Log);
@@ -395,6 +433,7 @@
         public System.Windows.Forms.Label label9;
         public System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button Delete;
     }
 }
 
