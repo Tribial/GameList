@@ -7,3 +7,4 @@ c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\obj\Debug\G.Properti
 c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\obj\Debug\G.csproj.GenerateResource.Cache
 c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\obj\Debug\G.exe
 c:\users\ops20fd1\documents\visual studio 2012\Projects\G\G\obj\Debug\G.pdb
+C:\Users\ops20fd1\documents\visual studio 2012\Projects\G\G\obj\Debug\G.putName.resources

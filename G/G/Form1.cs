@@ -13,6 +13,7 @@ namespace G
 {
     public partial class Form1 : Form
     {
+        private int currentId;
         private List<Label> labels = new List<Label>();
         private List<PictureBox> icons = new List<PictureBox>();
         private List<String> gamePaths = new List<string>();
@@ -39,12 +40,15 @@ namespace G
                 catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji.");}
                 if (id == 0)
                     id = 10;
-                label11.Text = gameNames[id-1];
-                label12.Text = gamePaths[id-1];
+                currentId = id - 1;
+                label11.Text = gameNames[currentId];
+                label12.Text = gamePaths[currentId];
             }
             
             Log.Enabled = true;
+            Delete.Enabled = true;
             Check_and_Load();
+            label_MouseHover(sender, e);
         }
 
         private void Form1_Click(object sender, EventArgs e)
@@ -52,6 +56,7 @@ namespace G
             label11.Text = "";
             label12.Text = "";
             Log.Enabled = false;
+            Delete.Enabled = false;
         }
 
         private void Check_and_Load()
@@ -90,7 +95,8 @@ namespace G
                     }
                 }
             }
-            catch (Exception){}
+            catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji."); }
+
             labels.Add(label1);
             labels.Add(label2);
             labels.Add(label3);
@@ -111,6 +117,7 @@ namespace G
             icons.Add(pictureBox8);
             icons.Add(pictureBox9);
             icons.Add(pictureBox10);
+            currentId = -1;
             Check_and_Load();
         }
 
@@ -140,34 +147,68 @@ namespace G
 
         private void Add_Click(object sender, EventArgs e)
         {
-            OpenFileDialog lol = new OpenFileDialog();
+            OpenFileDialog searchGame = new OpenFileDialog();
             bool clone=false;
-            lol.ShowDialog();
+            searchGame.ShowDialog();
             foreach (var a in gamePaths)
             {
-                if (a == lol.FileName)
+                if (a == searchGame.FileName)
                     clone = true;
             }
             if (!clone)
-            {
-                gamePaths.Add(lol.FileName);
-                gameNames.Add(lol.SafeFileName);
+            {//21
+                if (searchGame.SafeFileName.Length > 21)
+                {
+                    MessageBox.Show(searchGame.SafeFileName + "\n is to long, it has to have less than 22 characters.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    putName pt = new putName();
+                    pt.ShowDialog();
+                    gameNames.Add(pt.name);
+                }
+                
+                else if (MessageBox.Show("This game will be displayed with this name: " + searchGame.SafeFileName + "\nWould you like to change it?", "Add game", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    putName pt = new putName();
+                    pt.ShowDialog();
+                    gameNames.Add(pt.name);
+                }
+                
+                else
+                    gameNames.Add(searchGame.SafeFileName);
+                gamePaths.Add(searchGame.FileName);
+                
 
                 using (StreamWriter sw = new StreamWriter("games", true))
                 {
-                    sw.WriteLine(lol.FileName + "#" + lol.SafeFileName);
+                    sw.WriteLine(searchGame.FileName + "#" + searchGame.SafeFileName);
                 }
             }
             else
             {
-                MessageBox.Show("File:\n   " + lol.FileName + "\n   " + lol.SafeFileName +"\nIs already on your game list.");
+                MessageBox.Show("File:\n   " + searchGame.FileName + "\n   " + searchGame.SafeFileName +"\nIs already on your game list.","Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             Check_and_Load();
         }
 
         private void Delete_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                labels[gamePaths.Count - 1].Text = "Empty";
+                gamePaths.Remove(gamePaths[currentId]);
+                gameNames.Remove(gameNames[currentId]);
+                Check_and_Load();
+            }
+            catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji."); }
+            Form1_Click(sender, e);
+            
+            using (StreamWriter sw = new StreamWriter("games"))
+            {
+                for (int i = 0; i < gamePaths.Count; i++)
+                {
+                    sw.WriteLine(gamePaths[i] + "#" + gameNames[i]);
+                }
+            }
+            
         }
     }
 }
