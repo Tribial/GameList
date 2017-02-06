@@ -54,6 +54,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.Delete = new System.Windows.Forms.Button();
+            this.Run = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -351,12 +352,27 @@
             this.Delete.UseVisualStyleBackColor = false;
             this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
+            // Run
+            // 
+            this.Run.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Run.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.Run.Enabled = false;
+            this.Run.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Run.Font = new System.Drawing.Font("Lucida Console", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Run.Location = new System.Drawing.Point(1071, 252);
+            this.Run.Name = "Run";
+            this.Run.Size = new System.Drawing.Size(283, 73);
+            this.Run.TabIndex = 36;
+            this.Run.Text = "Run Game";
+            this.Run.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.Run);
             this.Controls.Add(this.Delete);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -435,6 +451,7 @@
         public System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button Delete;
+        private System.Windows.Forms.Button Run;
     }
 }
 

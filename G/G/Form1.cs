@@ -21,7 +21,8 @@ namespace G
 
         public Form1()
         {
-            
+            if (!Directory.Exists(Directory.GetCurrentDirectory() + "\\Game Logs\\"))
+                Directory.CreateDirectory(Directory.GetCurrentDirectory() + "\\Game Logs\\");
             InitializeComponent();
         }
 
@@ -37,7 +38,7 @@ namespace G
             {
                 Label sen = (Label)sender;
                 try { id = Convert.ToInt32(Convert.ToString(sen.Name[sen.Name.Length-1])); }
-                catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji.");}
+                catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji. #41");}
                 if (id == 0)
                     id = 10;
                 currentId = id - 1;
@@ -83,6 +84,8 @@ namespace G
         {
             try
             {
+                if (!File.Exists("games"))
+                    File.Create("games");
                 using (StreamReader sr = new StreamReader("games"))
                 {
                     string[] path_name;
@@ -95,7 +98,7 @@ namespace G
                     }
                 }
             }
-            catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji."); }
+            catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji. #99"); }
 
             labels.Add(label1);
             labels.Add(label2);
@@ -126,7 +129,7 @@ namespace G
             int id = -1;
             Label sen = (Label)sender;
             try { id = Convert.ToInt32(Convert.ToString(sen.Name[sen.Name.Length - 1])); }
-            catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji."); }
+            catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji. #130"); }
             if (id == 0)
                 id = 10;
             labels[id-1].BackColor = Color.Gray;
@@ -138,7 +141,7 @@ namespace G
             int id = -1;
             Label sen = (Label)sender;
             try { id = Convert.ToInt32(Convert.ToString(sen.Name[sen.Name.Length - 1])); }
-            catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji."); }
+            catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji. #142"); }
             if (id == 0)
                 id = 10;
             labels[id - 1].BackColor = Color.Transparent;
@@ -201,16 +204,16 @@ namespace G
             try
             {
                 labels[gamePaths.Count - 1].Text = "Empty";
-                gamePaths.Remove(gamePaths[currentId]);
-                gameNames.Remove(gameNames[currentId]);
                 if (MessageBox.Show("Do you want to delete all related log files?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) ;
                 {
                     if (File.Exists(Directory.GetCurrentDirectory() + "\\Game Logs\\" + gameNames[currentId] + "-logFile.txt"))
                         File.Delete(Directory.GetCurrentDirectory() + "\\Game Logs\\" + gameNames[currentId] + "-logFile.txt");
                 }
+                gamePaths.Remove(gamePaths[currentId]);
+                gameNames.Remove(gameNames[currentId]);
                 Check_and_Load();
             }
-            catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji."); }
+            catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji. #214"); }
             Form1_Click(sender, e);
             
             using (StreamWriter sw = new StreamWriter("games"))
@@ -224,12 +227,19 @@ namespace G
 
         private void Log_Click(object sender, EventArgs e)
         {
-            using (StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory()+"\\Game Logs\\" +gameNames[currentId] + "-logFile.txt", true))
+            try
             {
-                Log logIn = new Log();
-                logIn.ShowDialog();
-                if (logIn.ok)
-                    Log(logIn.msg, sw);
+                using (StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory() + "\\Game Logs\\" + gameNames[currentId] + "-logFile.txt", true))
+                {
+                    Log logIn = new Log();
+                    logIn.ShowDialog();
+                    if (logIn.ok)
+                        Log(logIn.msg, sw);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error, please restart GameList, and try again. #242");
             }
         }
         private void Log(string logMessage, TextWriter w)
