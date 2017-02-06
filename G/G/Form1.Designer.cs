@@ -50,7 +50,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.Add = new System.Windows.Forms.Button();
-            this.Log = new System.Windows.Forms.Button();
+            this.Lging = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.Delete = new System.Windows.Forms.Button();
@@ -305,19 +305,20 @@
             this.Add.UseVisualStyleBackColor = false;
             this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
-            // Log
+            // Lging
             // 
-            this.Log.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Log.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.Log.Enabled = false;
-            this.Log.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Log.Font = new System.Drawing.Font("Lucida Console", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Log.Location = new System.Drawing.Point(1071, 94);
-            this.Log.Name = "Log";
-            this.Log.Size = new System.Drawing.Size(283, 73);
-            this.Log.TabIndex = 32;
-            this.Log.Text = "Add Log";
-            this.Log.UseVisualStyleBackColor = false;
+            this.Lging.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Lging.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.Lging.Enabled = false;
+            this.Lging.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Lging.Font = new System.Drawing.Font("Lucida Console", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Lging.Location = new System.Drawing.Point(1071, 94);
+            this.Lging.Name = "Lging";
+            this.Lging.Size = new System.Drawing.Size(283, 73);
+            this.Lging.TabIndex = 32;
+            this.Lging.Text = "Add Log";
+            this.Lging.UseVisualStyleBackColor = false;
+            this.Lging.Click += new System.EventHandler(this.Log_Click);
             // 
             // label11
             // 
@@ -359,7 +360,7 @@
             this.Controls.Add(this.Delete);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.Log);
+            this.Controls.Add(this.Lging);
             this.Controls.Add(this.Add);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -420,7 +421,7 @@
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.Button Add;
-        private System.Windows.Forms.Button Log;
+        private System.Windows.Forms.Button Lging;
         private System.Windows.Forms.Label label11;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label label2;

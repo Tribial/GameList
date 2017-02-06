@@ -21,9 +21,9 @@ namespace G
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "Name" || textBox1.Text.Length == 0 || textBox1.Text.Contains(' '))
+            if (textBox1.Text.Length < 5)
             {
-                MessageBox.Show("This name is invalid", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("This name is invalid, at least 5 characters.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {

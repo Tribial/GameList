@@ -45,7 +45,7 @@ namespace G
                 label12.Text = gamePaths[currentId];
             }
             
-            Log.Enabled = true;
+            Lging.Enabled = true;
             Delete.Enabled = true;
             Check_and_Load();
             label_MouseHover(sender, e);
@@ -55,7 +55,7 @@ namespace G
         {
             label11.Text = "";
             label12.Text = "";
-            Log.Enabled = false;
+            Lging.Enabled = false;
             Delete.Enabled = false;
         }
 
@@ -149,6 +149,7 @@ namespace G
         {
             OpenFileDialog searchGame = new OpenFileDialog();
             bool clone=false;
+            string currentName;
             searchGame.ShowDialog();
             foreach (var a in gamePaths)
             {
@@ -163,24 +164,30 @@ namespace G
                     putName pt = new putName();
                     pt.ShowDialog();
                     gameNames.Add(pt.name);
+                    currentName = pt.name;
                 }
-                
+
                 else if (MessageBox.Show("This game will be displayed with this name: " + searchGame.SafeFileName + "\nWould you like to change it?", "Add game", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     putName pt = new putName();
                     pt.ShowDialog();
                     gameNames.Add(pt.name);
+                    currentName = pt.name;
                 }
-                
+
                 else
+                {
                     gameNames.Add(searchGame.SafeFileName);
+                    currentName = searchGame.SafeFileName;
+                }
                 gamePaths.Add(searchGame.FileName);
                 
 
                 using (StreamWriter sw = new StreamWriter("games", true))
                 {
-                    sw.WriteLine(searchGame.FileName + "#" + searchGame.SafeFileName);
+                    sw.WriteLine(searchGame.FileName + "#" + currentName);
                 }
+                File.Create(Directory.GetCurrentDirectory() + "\\Game Logs\\" + currentName + "-logFile.txt");
             }
             else
             {
@@ -196,6 +203,11 @@ namespace G
                 labels[gamePaths.Count - 1].Text = "Empty";
                 gamePaths.Remove(gamePaths[currentId]);
                 gameNames.Remove(gameNames[currentId]);
+                if (MessageBox.Show("Do you want to delete all related log files?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) ;
+                {
+                    if (File.Exists(Directory.GetCurrentDirectory() + "\\Game Logs\\" + gameNames[currentId] + "-logFile.txt"))
+                        File.Delete(Directory.GetCurrentDirectory() + "\\Game Logs\\" + gameNames[currentId] + "-logFile.txt");
+                }
                 Check_and_Load();
             }
             catch (Exception) { MessageBox.Show("Wystąpił błąd w oprogramowaniu, skontaktuj się z producentem aplikacji."); }
@@ -208,7 +220,27 @@ namespace G
                     sw.WriteLine(gamePaths[i] + "#" + gameNames[i]);
                 }
             }
-            
+        }
+
+        private void Log_Click(object sender, EventArgs e)
+        {
+            using (StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory()+"\\Game Logs\\" +gameNames[currentId] + "-logFile.txt", true))
+            {
+                Log logIn = new Log();
+                logIn.ShowDialog();
+                if (logIn.ok)
+                    Log(logIn.msg, sw);
+            }
+        }
+        private void Log(string logMessage, TextWriter w)
+        {
+            w.Write("\r\nLog Entry : ");
+            w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
+                DateTime.Now.ToLongDateString());
+            w.WriteLine("  :");
+            w.WriteLine("  {0}", logMessage);
+            w.WriteLine("  :");
+            w.WriteLine("-------------------------------");
         }
     }
 }
